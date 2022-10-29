@@ -71,9 +71,9 @@ class _AddTankPageState extends State<AddTankPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("pH"),
+                  const Text("pH"),
                   Switch(
-                      activeColor: Color(0xffFF7F11),
+                      activeColor: Theme.of(context).colorScheme.primary,
                       value: _isPhSelected,
                       onChanged: (value) {
                         setState(() {
@@ -88,9 +88,9 @@ class _AddTankPageState extends State<AddTankPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Temperatura"),
+                  const Text("Temperatura"),
                   Switch(
-                      activeColor: Color(0xffFF7F11),
+                      activeColor: Theme.of(context).colorScheme.primary,
                       value: _isTemperatureSelected,
                       onChanged: (value) {
                         setState(() {
@@ -105,9 +105,9 @@ class _AddTankPageState extends State<AddTankPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Detección de sólidos"),
+                  const Text("Detección de sólidos"),
                   Switch(
-                      activeColor: Color(0xffFF7F11),
+                      activeColor: Theme.of(context).colorScheme.primary,
                       value: _isSolidDetectionSelected,
                       onChanged: (value) {
                         setState(() {

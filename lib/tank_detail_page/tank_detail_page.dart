@@ -23,14 +23,14 @@ class TankDetailPage extends StatelessWidget {
         ],
       ),
       Container(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         alignment: Alignment.bottomRight,
         child: FloatingActionButton(
           onPressed: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const AddSensorPage()));
           },
-          backgroundColor: Color(0xffFF7F11),
+          backgroundColor: Theme.of(context).colorScheme.tertiary,
           child: const Icon(Icons.add),
         ),
       )
