@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:io_fish/feed_page/feed_page.dart';
+import 'package:io_fish/home_page/home_page.dart';
 
 void main() {
-  runApp(
-    MultiBlocProvider(
+  runApp(const MyApp()
+      /*MultiBlocProvider(
       providers: [],
       child: const MyApp(),
-    ),
-  );
+    ),*/
+      );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,15 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
+        title: 'Material App',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xff1F7A8C),
+              primary: const Color(0xff1F7A8C),
+              secondary: const Color(0xff77D353),
+              tertiary: const Color(0xffFF7F11)),
         ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
-    );
+        home: const HomePage());
   }
 }
