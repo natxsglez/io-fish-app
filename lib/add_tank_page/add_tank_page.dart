@@ -73,7 +73,7 @@ class _AddTankPageState extends State<AddTankPage> {
                 children: [
                   const Text("pH"),
                   Switch(
-                      activeColor: Theme.of(context).colorScheme.primary,
+                      activeColor: Theme.of(context).colorScheme.tertiary,
                       value: _isPhSelected,
                       onChanged: (value) {
                         setState(() {
@@ -90,7 +90,7 @@ class _AddTankPageState extends State<AddTankPage> {
                 children: [
                   const Text("Temperatura"),
                   Switch(
-                      activeColor: Theme.of(context).colorScheme.primary,
+                      activeColor: Theme.of(context).colorScheme.tertiary,
                       value: _isTemperatureSelected,
                       onChanged: (value) {
                         setState(() {
@@ -107,7 +107,7 @@ class _AddTankPageState extends State<AddTankPage> {
                 children: [
                   const Text("Detección de sólidos"),
                   Switch(
-                      activeColor: Theme.of(context).colorScheme.primary,
+                      activeColor: Theme.of(context).colorScheme.tertiary,
                       value: _isSolidDetectionSelected,
                       onChanged: (value) {
                         setState(() {

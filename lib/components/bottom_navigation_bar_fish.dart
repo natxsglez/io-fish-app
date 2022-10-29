@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:io_fish/feed_page/feed_page.dart';
 import 'package:io_fish/health_page/health_page.dart';
+import 'package:io_fish/sensor_graph_page/sensor_graph_page.dart';
 import 'package:io_fish/tank_detail_page/tank_detail_page.dart';
 
 class BottomNavigationBarFish extends StatefulWidget {
@@ -23,7 +24,12 @@ class _BottomNavigationBarFishState extends State<BottomNavigationBarFish> {
       ),
       body: IndexedStack(
         index: index,
-        children: const [HealthPage(), TankDetailPage(), FeedPage()],
+        children: const [
+          HealthPage(),
+          TankDetailPage(),
+          SensorGraphPage(),
+          FeedPage()
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
@@ -40,7 +46,9 @@ class _BottomNavigationBarFishState extends State<BottomNavigationBarFish> {
           BottomNavigationBarItem(
               icon: Icon(Icons.health_and_safety), label: "Salud"),
           BottomNavigationBarItem(
-              icon: Icon(FontAwesomeIcons.chartLine), label: "Sensores"),
+              icon: Icon(FontAwesomeIcons.microchip), label: "Sensores"),
+          BottomNavigationBarItem(
+              icon: Icon(FontAwesomeIcons.chartLine), label: "Gráfica"),
           BottomNavigationBarItem(
               icon: FaIcon(FontAwesomeIcons.cookieBite), label: "Alimentar"),
         ],

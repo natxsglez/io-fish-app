@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:io_fish/sensor_graph_page/sensor_graph_page.dart';
 
 import '../components/bottom_navigation_bar_fish.dart';
 
@@ -12,9 +13,10 @@ class SensorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: GestureDetector(
-        onTap: () {
-          //Navigator.push(context, MaterialPageRoute(builder: (context) => {}));
-        },
+        /*onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const SensorGraphPage()));
+        },*/
         child: ListTile(
           title: Text(sensorName),
           subtitle: Text("Actualizado el $lastUpdate"),
