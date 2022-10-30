@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_fish/components/bottom_navigation_bar_fish.dart';
+import 'package:io_fish/mqtt/bloc/mqtt_bloc.dart';
 
 class FeedPage extends StatelessWidget {
   const FeedPage({super.key});
@@ -20,7 +22,9 @@ class FeedPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(15.0, 25.0, 15.0, 8.0),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              BlocProvider.of<MqttBloc>(context).add(SendMessageMqttEvent());
+            },
             style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
                 backgroundColor: Theme.of(context).colorScheme.tertiary),
