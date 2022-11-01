@@ -15,6 +15,9 @@ dependencies:
   flutter_shimmer:
   font_awesome_flutter:
   mqtt_client:
+  amplify_flutter:
+  amplify_core:
+  amplify_datastore:
 
 dev_dependencies:
   flutter_test:
