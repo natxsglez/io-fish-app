@@ -1,15 +1,25 @@
-type TankIoFish @model @auth(rules: [{allow: public}]) {
+type Tank @model @auth(rules: [{allow: public}]) {
   id: ID!
   tankName: String
   fishType: String
-  sensors: AWSJSON
-  sensorsiofishs: [SensorsIoFish] @hasMany(indexName: "byTankIoFish", fields: ["id"])
+  sensors: [String]
+  addedOn: AWSDateTime
+  userID: String
 }
 
-type SensorsIoFish @model @auth(rules: [{allow: public}]) {
+type Sensor @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  sensorType: String
+  max: Float
+  min: Float
+  tankID: String
+}
+
+type SensorMessages @model @auth(rules: [{allow: public}]) {
   id: ID!
   fotoresistor: Float
   temperature: Float
   phIndex: Float
-  tankID: ID! @index(name: "byTankIoFish")
+  tankID: String
 }
+ 

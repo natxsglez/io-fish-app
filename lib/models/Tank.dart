@@ -19,21 +19,21 @@
 
 // ignore_for_file: public_member_api_docs, annotate_overrides, dead_code, dead_codepublic_member_api_docs, depend_on_referenced_packages, file_names, library_private_types_in_public_api, no_leading_underscores_for_library_prefixes, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, null_check_on_nullable_type_parameter, prefer_adjacent_string_concatenation, prefer_const_constructors, prefer_if_null_operators, prefer_interpolation_to_compose_strings, slash_for_doc_comments, sort_child_properties_last, unnecessary_const, unnecessary_constructor_name, unnecessary_late, unnecessary_new, unnecessary_null_aware_assignments, unnecessary_nullable_for_final_variable_declarations, unnecessary_string_interpolations, use_build_context_synchronously
 
-import 'ModelProvider.dart';
 import 'package:amplify_core/amplify_core.dart';
 import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the TankIoFish type in your schema. */
+/** This is an auto generated class representing the Tank type in your schema. */
 @immutable
-class TankIoFish extends Model {
-  static const classType = const _TankIoFishModelType();
+class Tank extends Model {
+  static const classType = const _TankModelType();
   final String id;
   final String? _tankName;
   final String? _fishType;
-  final String? _sensors;
-  final List<SensorsIoFish>? _sensorsiofishs;
+  final List<String>? _sensors;
+  final TemporalDateTime? _addedOn;
+  final String? _userID;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -53,12 +53,16 @@ class TankIoFish extends Model {
     return _fishType;
   }
   
-  String? get sensors {
+  List<String>? get sensors {
     return _sensors;
   }
   
-  List<SensorsIoFish>? get sensorsiofishs {
-    return _sensorsiofishs;
+  TemporalDateTime? get addedOn {
+    return _addedOn;
+  }
+  
+  String? get userID {
+    return _userID;
   }
   
   TemporalDateTime? get createdAt {
@@ -69,15 +73,16 @@ class TankIoFish extends Model {
     return _updatedAt;
   }
   
-  const TankIoFish._internal({required this.id, tankName, fishType, sensors, sensorsiofishs, createdAt, updatedAt}): _tankName = tankName, _fishType = fishType, _sensors = sensors, _sensorsiofishs = sensorsiofishs, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Tank._internal({required this.id, tankName, fishType, sensors, addedOn, userID, createdAt, updatedAt}): _tankName = tankName, _fishType = fishType, _sensors = sensors, _addedOn = addedOn, _userID = userID, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory TankIoFish({String? id, String? tankName, String? fishType, String? sensors, List<SensorsIoFish>? sensorsiofishs}) {
-    return TankIoFish._internal(
+  factory Tank({String? id, String? tankName, String? fishType, List<String>? sensors, TemporalDateTime? addedOn, String? userID}) {
+    return Tank._internal(
       id: id == null ? UUID.getUUID() : id,
       tankName: tankName,
       fishType: fishType,
-      sensors: sensors,
-      sensorsiofishs: sensorsiofishs != null ? List<SensorsIoFish>.unmodifiable(sensorsiofishs) : sensorsiofishs);
+      sensors: sensors != null ? List<String>.unmodifiable(sensors) : sensors,
+      addedOn: addedOn,
+      userID: userID);
   }
   
   bool equals(Object other) {
@@ -87,12 +92,13 @@ class TankIoFish extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is TankIoFish &&
+    return other is Tank &&
       id == other.id &&
       _tankName == other._tankName &&
       _fishType == other._fishType &&
-      _sensors == other._sensors &&
-      DeepCollectionEquality().equals(_sensorsiofishs, other._sensorsiofishs);
+      DeepCollectionEquality().equals(_sensors, other._sensors) &&
+      _addedOn == other._addedOn &&
+      _userID == other._userID;
   }
   
   @override
@@ -102,11 +108,13 @@ class TankIoFish extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("TankIoFish {");
+    buffer.write("Tank {");
     buffer.write("id=" + "$id" + ", ");
     buffer.write("tankName=" + "$_tankName" + ", ");
     buffer.write("fishType=" + "$_fishType" + ", ");
-    buffer.write("sensors=" + "$_sensors" + ", ");
+    buffer.write("sensors=" + (_sensors != null ? _sensors!.toString() : "null") + ", ");
+    buffer.write("addedOn=" + (_addedOn != null ? _addedOn!.format() : "null") + ", ");
+    buffer.write("userID=" + "$_userID" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -114,47 +122,43 @@ class TankIoFish extends Model {
     return buffer.toString();
   }
   
-  TankIoFish copyWith({String? id, String? tankName, String? fishType, String? sensors, List<SensorsIoFish>? sensorsiofishs}) {
-    return TankIoFish._internal(
+  Tank copyWith({String? id, String? tankName, String? fishType, List<String>? sensors, TemporalDateTime? addedOn, String? userID}) {
+    return Tank._internal(
       id: id ?? this.id,
       tankName: tankName ?? this.tankName,
       fishType: fishType ?? this.fishType,
       sensors: sensors ?? this.sensors,
-      sensorsiofishs: sensorsiofishs ?? this.sensorsiofishs);
+      addedOn: addedOn ?? this.addedOn,
+      userID: userID ?? this.userID);
   }
   
-  TankIoFish.fromJson(Map<String, dynamic> json)  
+  Tank.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
       _tankName = json['tankName'],
       _fishType = json['fishType'],
-      _sensors = json['sensors'],
-      _sensorsiofishs = json['sensorsiofishs'] is List
-        ? (json['sensorsiofishs'] as List)
-          .where((e) => e?['serializedData'] != null)
-          .map((e) => SensorsIoFish.fromJson(new Map<String, dynamic>.from(e['serializedData'])))
-          .toList()
-        : null,
+      _sensors = json['sensors']?.cast<String>(),
+      _addedOn = json['addedOn'] != null ? TemporalDateTime.fromString(json['addedOn']) : null,
+      _userID = json['userID'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'tankName': _tankName, 'fishType': _fishType, 'sensors': _sensors, 'sensorsiofishs': _sensorsiofishs?.map((SensorsIoFish? e) => e?.toJson()).toList(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'tankName': _tankName, 'fishType': _fishType, 'sensors': _sensors, 'addedOn': _addedOn?.format(), 'userID': _userID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
-    'id': id, 'tankName': _tankName, 'fishType': _fishType, 'sensors': _sensors, 'sensorsiofishs': _sensorsiofishs, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+    'id': id, 'tankName': _tankName, 'fishType': _fishType, 'sensors': _sensors, 'addedOn': _addedOn, 'userID': _userID, 'createdAt': _createdAt, 'updatedAt': _updatedAt
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
   static final QueryField TANKNAME = QueryField(fieldName: "tankName");
   static final QueryField FISHTYPE = QueryField(fieldName: "fishType");
   static final QueryField SENSORS = QueryField(fieldName: "sensors");
-  static final QueryField SENSORSIOFISHS = QueryField(
-    fieldName: "sensorsiofishs",
-    fieldType: ModelFieldType(ModelFieldTypeEnum.model, ofModelName: (SensorsIoFish).toString()));
+  static final QueryField ADDEDON = QueryField(fieldName: "addedOn");
+  static final QueryField USERID = QueryField(fieldName: "userID");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "TankIoFish";
-    modelSchemaDefinition.pluralName = "TankIoFish";
+    modelSchemaDefinition.name = "Tank";
+    modelSchemaDefinition.pluralName = "Tanks";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
@@ -170,28 +174,34 @@ class TankIoFish extends Model {
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: TankIoFish.TANKNAME,
+      key: Tank.TANKNAME,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: TankIoFish.FISHTYPE,
+      key: Tank.FISHTYPE,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: TankIoFish.SENSORS,
+      key: Tank.SENSORS,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+      isArray: true,
+      ofType: ModelFieldType(ModelFieldTypeEnum.collection, ofModelName: describeEnum(ModelFieldTypeEnum.string))
     ));
     
-    modelSchemaDefinition.addField(ModelFieldDefinition.hasMany(
-      key: TankIoFish.SENSORSIOFISHS,
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Tank.ADDEDON,
       isRequired: false,
-      ofModelName: (SensorsIoFish).toString(),
-      associatedKey: SensorsIoFish.TANKID
+      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Tank.USERID,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(
@@ -210,11 +220,11 @@ class TankIoFish extends Model {
   });
 }
 
-class _TankIoFishModelType extends ModelType<TankIoFish> {
-  const _TankIoFishModelType();
+class _TankModelType extends ModelType<Tank> {
+  const _TankModelType();
   
   @override
-  TankIoFish fromJson(Map<String, dynamic> jsonData) {
-    return TankIoFish.fromJson(jsonData);
+  Tank fromJson(Map<String, dynamic> jsonData) {
+    return Tank.fromJson(jsonData);
   }
 }

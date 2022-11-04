@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:io_fish/services/tank/tank_bloc.dart';
 
 class AddTankPage extends StatefulWidget {
   AddTankPage({super.key});
@@ -9,7 +11,7 @@ class AddTankPage extends StatefulWidget {
 
 class _AddTankPageState extends State<AddTankPage> {
   final TextEditingController _fishTankController = TextEditingController();
-  String? dropdownvalue;
+  String? _dropdownvalue;
   final typeOfFish = [
     "Dorado",
     "Guppy",
@@ -18,7 +20,7 @@ class _AddTankPageState extends State<AddTankPage> {
 
   // TYPE OF SENSORS
   bool _isPhSelected = false;
-  bool _isSolidDetectionSelected = false;
+  bool _isPhotoresistorSelected = false;
   bool _isTemperatureSelected = false;
 
   @override
@@ -26,7 +28,33 @@ class _AddTankPageState extends State<AddTankPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('Agregar nueva pecera'),
-          actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.save))],
+          actions: [
+            BlocListener<TankBloc, TankState>(
+              listener: (context, state) {
+                if (state is TankAddedSuccessState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text("Pecera agregada de manera exitosa")),
+                  );
+                  Navigator.of(context).pop();
+                } else if (state is TankErrorState) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                        content: Text(
+                            "No se pudo agregar la pecera, intenta de nuevo")),
+                  );
+                }
+              },
+              child: IconButton(
+                  onPressed: () {
+                    BlocProvider.of<TankBloc>(context).add(CreateTankEvent(
+                        tankName: _fishTankController.value.text,
+                        fishType: _dropdownvalue ?? "",
+                        sensors: _createListOfSensors()));
+                  },
+                  icon: const Icon(Icons.save)),
+            )
+          ],
         ),
         body: Column(
           children: [
@@ -41,7 +69,7 @@ class _AddTankPageState extends State<AddTankPage> {
               padding: const EdgeInsets.all(12.0),
               child: DropdownButton(
                 isExpanded: true,
-                value: dropdownvalue,
+                value: _dropdownvalue,
                 hint: const Text("Tipo de pez"),
                 icon: const Icon(Icons.keyboard_arrow_down),
                 items: typeOfFish.map((String items) {
@@ -52,7 +80,7 @@ class _AddTankPageState extends State<AddTankPage> {
                 }).toList(),
                 onChanged: (String? newValue) {
                   setState(() {
-                    dropdownvalue = newValue!;
+                    _dropdownvalue = newValue!;
                   });
                 },
               ),
@@ -105,13 +133,13 @@ class _AddTankPageState extends State<AddTankPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("Detección de sólidos"),
+                  const Text("Fotoresistor"),
                   Switch(
                       activeColor: Theme.of(context).colorScheme.tertiary,
-                      value: _isSolidDetectionSelected,
+                      value: _isPhotoresistorSelected,
                       onChanged: (value) {
                         setState(() {
-                          _isSolidDetectionSelected = value;
+                          _isPhotoresistorSelected = value;
                         });
                       })
                 ],
@@ -119,5 +147,19 @@ class _AddTankPageState extends State<AddTankPage> {
             )
           ],
         ));
+  }
+
+  List<String> _createListOfSensors() {
+    List<String> sensors = [];
+    if (_isPhSelected) {
+      sensors.add("pH");
+    }
+    if (_isPhotoresistorSelected) {
+      sensors.add("Fotoresistor");
+    }
+    if (_isTemperatureSelected) {
+      sensors.add("Temperatura");
+    }
+    return sensors;
   }
 }

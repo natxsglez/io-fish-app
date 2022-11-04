@@ -1,15 +1,20 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-iofish-dev-161633-authRole",
-      "UnauthRoleArn": "arn:aws:iam::782671310415:role/amplify-iofish-dev-161633-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::782671310415:role/amplify-iofish-dev-161633-authRole",
+      "AuthRoleName": "amplify-iofish-dev-105654-authRole",
+      "UnauthRoleArn": "arn:aws:iam::782671310415:role/amplify-iofish-dev-105654-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::782671310415:role/amplify-iofish-dev-105654-authRole",
       "Region": "us-west-2",
-      "DeploymentBucketName": "amplify-iofish-dev-161633-deployment",
-      "UnauthRoleName": "amplify-iofish-dev-161633-unauthRole",
-      "StackName": "amplify-iofish-dev-161633",
-      "StackId": "arn:aws:cloudformation:us-west-2:782671310415:stack/amplify-iofish-dev-161633/af3f9010-5969-11ed-9989-02c04d2a9a13",
-      "AmplifyAppId": "d2kdmlninw5m69"
+      "DeploymentBucketName": "amplify-iofish-dev-105654-deployment",
+      "UnauthRoleName": "amplify-iofish-dev-105654-unauthRole",
+      "StackName": "amplify-iofish-dev-105654",
+      "StackId": "arn:aws:cloudformation:us-west-2:782671310415:stack/amplify-iofish-dev-105654/86695500-5b98-11ed-b298-0678c7eafd51",
+      "AmplifyAppId": "d3sebcfnotx16m"
+    },
+    "categories": {
+      "auth": {
+        "iofish189bbbba": {}
+      }
     }
   }
 }

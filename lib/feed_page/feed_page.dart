@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_fish/components/bottom_navigation_bar_fish.dart';
-import 'package:io_fish/services/mqtt/bloc/mqtt_bloc.dart';
+import 'package:io_fish/services/mqtt/mqtt_bloc.dart';
 
 class FeedPage extends StatelessWidget {
   const FeedPage({super.key});

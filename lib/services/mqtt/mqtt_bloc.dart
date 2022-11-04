@@ -70,6 +70,7 @@ class MqttBloc extends Bloc<MqttEvent, MqttState> {
           constants.topicName, MqttQos.atMostOnce, dataBuffer);
     } catch (error) {
       print(error);
+      emit(MqttErrorState());
     }
   }
 

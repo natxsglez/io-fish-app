@@ -16,8 +16,11 @@ dependencies:
   font_awesome_flutter:
   mqtt_client:
   amplify_flutter:
+  amplify_auth_cognito:
+  amplify_authenticator:
   amplify_core:
   amplify_datastore:
+  amplify_api:
 
 dev_dependencies:
   flutter_test:

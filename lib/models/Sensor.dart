@@ -23,14 +23,14 @@ import 'package:amplify_core/amplify_core.dart';
 import 'package:flutter/foundation.dart';
 
 
-/** This is an auto generated class representing the SensorsIoFish type in your schema. */
+/** This is an auto generated class representing the Sensor type in your schema. */
 @immutable
-class SensorsIoFish extends Model {
-  static const classType = const _SensorsIoFishModelType();
+class Sensor extends Model {
+  static const classType = const _SensorModelType();
   final String id;
-  final double? _fotoresistor;
-  final double? _temperature;
-  final double? _phIndex;
+  final String? _sensorType;
+  final double? _max;
+  final double? _min;
   final String? _tankID;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
@@ -43,29 +43,20 @@ class SensorsIoFish extends Model {
     return id;
   }
   
-  double? get fotoresistor {
-    return _fotoresistor;
+  String? get sensorType {
+    return _sensorType;
   }
   
-  double? get temperature {
-    return _temperature;
+  double? get max {
+    return _max;
   }
   
-  double? get phIndex {
-    return _phIndex;
+  double? get min {
+    return _min;
   }
   
-  String get tankID {
-    try {
-      return _tankID!;
-    } catch(e) {
-      throw new AmplifyCodeGenModelException(
-          AmplifyExceptionMessages.codeGenRequiredFieldForceCastExceptionMessage,
-          recoverySuggestion:
-            AmplifyExceptionMessages.codeGenRequiredFieldForceCastRecoverySuggestion,
-          underlyingException: e.toString()
-          );
-    }
+  String? get tankID {
+    return _tankID;
   }
   
   TemporalDateTime? get createdAt {
@@ -76,14 +67,14 @@ class SensorsIoFish extends Model {
     return _updatedAt;
   }
   
-  const SensorsIoFish._internal({required this.id, fotoresistor, temperature, phIndex, required tankID, createdAt, updatedAt}): _fotoresistor = fotoresistor, _temperature = temperature, _phIndex = phIndex, _tankID = tankID, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Sensor._internal({required this.id, sensorType, max, min, tankID, createdAt, updatedAt}): _sensorType = sensorType, _max = max, _min = min, _tankID = tankID, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory SensorsIoFish({String? id, double? fotoresistor, double? temperature, double? phIndex, required String tankID}) {
-    return SensorsIoFish._internal(
+  factory Sensor({String? id, String? sensorType, double? max, double? min, String? tankID}) {
+    return Sensor._internal(
       id: id == null ? UUID.getUUID() : id,
-      fotoresistor: fotoresistor,
-      temperature: temperature,
-      phIndex: phIndex,
+      sensorType: sensorType,
+      max: max,
+      min: min,
       tankID: tankID);
   }
   
@@ -94,11 +85,11 @@ class SensorsIoFish extends Model {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is SensorsIoFish &&
+    return other is Sensor &&
       id == other.id &&
-      _fotoresistor == other._fotoresistor &&
-      _temperature == other._temperature &&
-      _phIndex == other._phIndex &&
+      _sensorType == other._sensorType &&
+      _max == other._max &&
+      _min == other._min &&
       _tankID == other._tankID;
   }
   
@@ -109,11 +100,11 @@ class SensorsIoFish extends Model {
   String toString() {
     var buffer = new StringBuffer();
     
-    buffer.write("SensorsIoFish {");
+    buffer.write("Sensor {");
     buffer.write("id=" + "$id" + ", ");
-    buffer.write("fotoresistor=" + (_fotoresistor != null ? _fotoresistor!.toString() : "null") + ", ");
-    buffer.write("temperature=" + (_temperature != null ? _temperature!.toString() : "null") + ", ");
-    buffer.write("phIndex=" + (_phIndex != null ? _phIndex!.toString() : "null") + ", ");
+    buffer.write("sensorType=" + "$_sensorType" + ", ");
+    buffer.write("max=" + (_max != null ? _max!.toString() : "null") + ", ");
+    buffer.write("min=" + (_min != null ? _min!.toString() : "null") + ", ");
     buffer.write("tankID=" + "$_tankID" + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
@@ -122,40 +113,40 @@ class SensorsIoFish extends Model {
     return buffer.toString();
   }
   
-  SensorsIoFish copyWith({String? id, double? fotoresistor, double? temperature, double? phIndex, String? tankID}) {
-    return SensorsIoFish._internal(
+  Sensor copyWith({String? id, String? sensorType, double? max, double? min, String? tankID}) {
+    return Sensor._internal(
       id: id ?? this.id,
-      fotoresistor: fotoresistor ?? this.fotoresistor,
-      temperature: temperature ?? this.temperature,
-      phIndex: phIndex ?? this.phIndex,
+      sensorType: sensorType ?? this.sensorType,
+      max: max ?? this.max,
+      min: min ?? this.min,
       tankID: tankID ?? this.tankID);
   }
   
-  SensorsIoFish.fromJson(Map<String, dynamic> json)  
+  Sensor.fromJson(Map<String, dynamic> json)  
     : id = json['id'],
-      _fotoresistor = (json['fotoresistor'] as num?)?.toDouble(),
-      _temperature = (json['temperature'] as num?)?.toDouble(),
-      _phIndex = (json['phIndex'] as num?)?.toDouble(),
+      _sensorType = json['sensorType'],
+      _max = (json['max'] as num?)?.toDouble(),
+      _min = (json['min'] as num?)?.toDouble(),
       _tankID = json['tankID'],
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'fotoresistor': _fotoresistor, 'temperature': _temperature, 'phIndex': _phIndex, 'tankID': _tankID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'sensorType': _sensorType, 'max': _max, 'min': _min, 'tankID': _tankID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
-    'id': id, 'fotoresistor': _fotoresistor, 'temperature': _temperature, 'phIndex': _phIndex, 'tankID': _tankID, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+    'id': id, 'sensorType': _sensorType, 'max': _max, 'min': _min, 'tankID': _tankID, 'createdAt': _createdAt, 'updatedAt': _updatedAt
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
-  static final QueryField FOTORESISTOR = QueryField(fieldName: "fotoresistor");
-  static final QueryField TEMPERATURE = QueryField(fieldName: "temperature");
-  static final QueryField PHINDEX = QueryField(fieldName: "phIndex");
+  static final QueryField SENSORTYPE = QueryField(fieldName: "sensorType");
+  static final QueryField MAX = QueryField(fieldName: "max");
+  static final QueryField MIN = QueryField(fieldName: "min");
   static final QueryField TANKID = QueryField(fieldName: "tankID");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
-    modelSchemaDefinition.name = "SensorsIoFish";
-    modelSchemaDefinition.pluralName = "SensorsIoFish";
+    modelSchemaDefinition.name = "Sensor";
+    modelSchemaDefinition.pluralName = "Sensors";
     
     modelSchemaDefinition.authRules = [
       AuthRule(
@@ -168,33 +159,29 @@ class SensorsIoFish extends Model {
         ])
     ];
     
-    modelSchemaDefinition.indexes = [
-      ModelIndex(fields: const ["tankID"], name: "byTankIoFish")
-    ];
-    
     modelSchemaDefinition.addField(ModelFieldDefinition.id());
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: SensorsIoFish.FOTORESISTOR,
+      key: Sensor.SENSORTYPE,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Sensor.MAX,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.double)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: SensorsIoFish.TEMPERATURE,
+      key: Sensor.MIN,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.double)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: SensorsIoFish.PHINDEX,
+      key: Sensor.TANKID,
       isRequired: false,
-      ofType: ModelFieldType(ModelFieldTypeEnum.double)
-    ));
-    
-    modelSchemaDefinition.addField(ModelFieldDefinition.field(
-      key: SensorsIoFish.TANKID,
-      isRequired: true,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
     ));
     
@@ -214,11 +201,11 @@ class SensorsIoFish extends Model {
   });
 }
 
-class _SensorsIoFishModelType extends ModelType<SensorsIoFish> {
-  const _SensorsIoFishModelType();
+class _SensorModelType extends ModelType<Sensor> {
+  const _SensorModelType();
   
   @override
-  SensorsIoFish fromJson(Map<String, dynamic> jsonData) {
-    return SensorsIoFish.fromJson(jsonData);
+  Sensor fromJson(Map<String, dynamic> jsonData) {
+    return Sensor.fromJson(jsonData);
   }
 }
