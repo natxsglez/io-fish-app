@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:io_fish/models/Sensor.dart';
 import 'package:io_fish/sensor_graph_page/sensor_graph_page.dart';
 
-import '../components/bottom_navigation_bar_fish.dart';
-
 class SensorItem extends StatelessWidget {
-  final sensorName;
-  final lastUpdate;
-  SensorItem({super.key, required this.sensorName, required this.lastUpdate});
+  final Sensor sensor;
+  SensorItem({super.key, required this.sensor});
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +16,8 @@ class SensorItem extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const SensorGraphPage()));
         },*/
         child: ListTile(
-          title: Text(sensorName),
-          subtitle: Text("Actualizado el $lastUpdate"),
+          title: Text(sensor.sensorType!),
+          subtitle: Text("Actualizado el ${sensor.lastUpdated}"),
           leading: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [

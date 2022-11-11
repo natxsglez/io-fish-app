@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:io_fish/add_tank_page/add_tank_page.dart';
+import 'package:io_fish/pages/add_tank_page/add_tank_page.dart';
 import 'package:io_fish/home_page/tank_list.dart';
 import 'package:io_fish/services/amplify/amplify_bloc.dart';
 import 'package:io_fish/services/tank/tank_bloc.dart';

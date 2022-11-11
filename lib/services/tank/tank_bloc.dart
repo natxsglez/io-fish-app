@@ -1,12 +1,7 @@
 import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:io_fish/models/ModelProvider.dart';
 import 'package:io_fish/repositories/sensor_repository.dart';
 import 'package:io_fish/repositories/tank_repository.dart';
 

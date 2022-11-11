@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:io_fish/home_page/home_page.dart';
 import 'package:io_fish/services/amplify/amplify_bloc.dart';
 import 'package:io_fish/services/mqtt/mqtt_bloc.dart';
+import 'package:io_fish/services/sensor/sensor_bloc.dart';
 import 'package:io_fish/services/tank/tank_bloc.dart';
 
 void main() {
@@ -13,7 +14,8 @@ void main() {
         BlocProvider<MqttBloc>(create: (BuildContext context) => MqttBloc()),
         BlocProvider<AmplifyBloc>(
             create: (BuildContext context) => AmplifyBloc()),
-        BlocProvider<TankBloc>(create: (BuildContext context) => TankBloc())
+        BlocProvider<TankBloc>(create: (BuildContext context) => TankBloc()),
+        BlocProvider<SensorBloc>(create: (BuildContext context) => SensorBloc())
       ],
       child: const MyApp(),
     ),

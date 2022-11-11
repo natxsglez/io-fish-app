@@ -32,6 +32,7 @@ class Sensor extends Model {
   final double? _max;
   final double? _min;
   final String? _tankID;
+  final TemporalDateTime? _lastUpdated;
   final TemporalDateTime? _createdAt;
   final TemporalDateTime? _updatedAt;
 
@@ -59,6 +60,10 @@ class Sensor extends Model {
     return _tankID;
   }
   
+  TemporalDateTime? get lastUpdated {
+    return _lastUpdated;
+  }
+  
   TemporalDateTime? get createdAt {
     return _createdAt;
   }
@@ -67,15 +72,16 @@ class Sensor extends Model {
     return _updatedAt;
   }
   
-  const Sensor._internal({required this.id, sensorType, max, min, tankID, createdAt, updatedAt}): _sensorType = sensorType, _max = max, _min = min, _tankID = tankID, _createdAt = createdAt, _updatedAt = updatedAt;
+  const Sensor._internal({required this.id, sensorType, max, min, tankID, lastUpdated, createdAt, updatedAt}): _sensorType = sensorType, _max = max, _min = min, _tankID = tankID, _lastUpdated = lastUpdated, _createdAt = createdAt, _updatedAt = updatedAt;
   
-  factory Sensor({String? id, String? sensorType, double? max, double? min, String? tankID}) {
+  factory Sensor({String? id, String? sensorType, double? max, double? min, String? tankID, TemporalDateTime? lastUpdated}) {
     return Sensor._internal(
       id: id == null ? UUID.getUUID() : id,
       sensorType: sensorType,
       max: max,
       min: min,
-      tankID: tankID);
+      tankID: tankID,
+      lastUpdated: lastUpdated);
   }
   
   bool equals(Object other) {
@@ -90,7 +96,8 @@ class Sensor extends Model {
       _sensorType == other._sensorType &&
       _max == other._max &&
       _min == other._min &&
-      _tankID == other._tankID;
+      _tankID == other._tankID &&
+      _lastUpdated == other._lastUpdated;
   }
   
   @override
@@ -106,6 +113,7 @@ class Sensor extends Model {
     buffer.write("max=" + (_max != null ? _max!.toString() : "null") + ", ");
     buffer.write("min=" + (_min != null ? _min!.toString() : "null") + ", ");
     buffer.write("tankID=" + "$_tankID" + ", ");
+    buffer.write("lastUpdated=" + (_lastUpdated != null ? _lastUpdated!.format() : "null") + ", ");
     buffer.write("createdAt=" + (_createdAt != null ? _createdAt!.format() : "null") + ", ");
     buffer.write("updatedAt=" + (_updatedAt != null ? _updatedAt!.format() : "null"));
     buffer.write("}");
@@ -113,13 +121,14 @@ class Sensor extends Model {
     return buffer.toString();
   }
   
-  Sensor copyWith({String? id, String? sensorType, double? max, double? min, String? tankID}) {
+  Sensor copyWith({String? id, String? sensorType, double? max, double? min, String? tankID, TemporalDateTime? lastUpdated}) {
     return Sensor._internal(
       id: id ?? this.id,
       sensorType: sensorType ?? this.sensorType,
       max: max ?? this.max,
       min: min ?? this.min,
-      tankID: tankID ?? this.tankID);
+      tankID: tankID ?? this.tankID,
+      lastUpdated: lastUpdated ?? this.lastUpdated);
   }
   
   Sensor.fromJson(Map<String, dynamic> json)  
@@ -128,15 +137,16 @@ class Sensor extends Model {
       _max = (json['max'] as num?)?.toDouble(),
       _min = (json['min'] as num?)?.toDouble(),
       _tankID = json['tankID'],
+      _lastUpdated = json['lastUpdated'] != null ? TemporalDateTime.fromString(json['lastUpdated']) : null,
       _createdAt = json['createdAt'] != null ? TemporalDateTime.fromString(json['createdAt']) : null,
       _updatedAt = json['updatedAt'] != null ? TemporalDateTime.fromString(json['updatedAt']) : null;
   
   Map<String, dynamic> toJson() => {
-    'id': id, 'sensorType': _sensorType, 'max': _max, 'min': _min, 'tankID': _tankID, 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
+    'id': id, 'sensorType': _sensorType, 'max': _max, 'min': _min, 'tankID': _tankID, 'lastUpdated': _lastUpdated?.format(), 'createdAt': _createdAt?.format(), 'updatedAt': _updatedAt?.format()
   };
   
   Map<String, Object?> toMap() => {
-    'id': id, 'sensorType': _sensorType, 'max': _max, 'min': _min, 'tankID': _tankID, 'createdAt': _createdAt, 'updatedAt': _updatedAt
+    'id': id, 'sensorType': _sensorType, 'max': _max, 'min': _min, 'tankID': _tankID, 'lastUpdated': _lastUpdated, 'createdAt': _createdAt, 'updatedAt': _updatedAt
   };
 
   static final QueryField ID = QueryField(fieldName: "id");
@@ -144,6 +154,7 @@ class Sensor extends Model {
   static final QueryField MAX = QueryField(fieldName: "max");
   static final QueryField MIN = QueryField(fieldName: "min");
   static final QueryField TANKID = QueryField(fieldName: "tankID");
+  static final QueryField LASTUPDATED = QueryField(fieldName: "lastUpdated");
   static var schema = Model.defineSchema(define: (ModelSchemaDefinition modelSchemaDefinition) {
     modelSchemaDefinition.name = "Sensor";
     modelSchemaDefinition.pluralName = "Sensors";
@@ -183,6 +194,12 @@ class Sensor extends Model {
       key: Sensor.TANKID,
       isRequired: false,
       ofType: ModelFieldType(ModelFieldTypeEnum.string)
+    ));
+    
+    modelSchemaDefinition.addField(ModelFieldDefinition.field(
+      key: Sensor.LASTUPDATED,
+      isRequired: false,
+      ofType: ModelFieldType(ModelFieldTypeEnum.dateTime)
     ));
     
     modelSchemaDefinition.addField(ModelFieldDefinition.nonQueryField(

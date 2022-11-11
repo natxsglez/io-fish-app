@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:io_fish/feed_page/feed_page.dart';
 import 'package:io_fish/health_page/health_page.dart';
+import 'package:io_fish/models/Sensor.dart';
 import 'package:io_fish/sensor_graph_page/sensor_graph_page.dart';
+import 'package:io_fish/services/sensor/sensor_bloc.dart';
 import 'package:io_fish/tank_detail_page/tank_detail_page.dart';
 
 class BottomNavigationBarFish extends StatefulWidget {
-  const BottomNavigationBarFish({super.key});
+  final String tankId;
+  BottomNavigationBarFish({super.key, required this.tankId});
 
   @override
   State<BottomNavigationBarFish> createState() =>
-      _BottomNavigationBarFishState();
+      _BottomNavigationBarFishState(tankId);
 }
 
 class _BottomNavigationBarFishState extends State<BottomNavigationBarFish> {
+  final String tankId;
   int index = 1;
+
+  _BottomNavigationBarFishState(this.tankId);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +31,11 @@ class _BottomNavigationBarFishState extends State<BottomNavigationBarFish> {
       ),
       body: IndexedStack(
         index: index,
-        children: const [
+        children: [
           HealthPage(),
-          TankDetailPage(),
+          TankDetailPage(
+            tankId: tankId,
+          ),
           SensorGraphPage(),
           FeedPage()
         ],

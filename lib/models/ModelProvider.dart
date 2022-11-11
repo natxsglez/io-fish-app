@@ -30,7 +30,7 @@ export 'Tank.dart';
 
 class ModelProvider implements ModelProviderInterface {
   @override
-  String version = "20c924892b65f9796700810e9c9a532f";
+  String version = "f721611a8518cff894ac57b340c8dff4";
   @override
   List<ModelSchema> modelSchemas = [Sensor.schema, SensorMessages.schema, Tank.schema];
   static final ModelProvider _instance = ModelProvider();
