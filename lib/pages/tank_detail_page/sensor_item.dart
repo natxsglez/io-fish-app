@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:io_fish/models/Sensor.dart';
-import 'package:io_fish/sensor_graph_page/sensor_graph_page.dart';
+import 'package:io_fish/pages/sensor_graph_page/sensor_graph_page.dart';
 
 class SensorItem extends StatelessWidget {
   final Sensor sensor;

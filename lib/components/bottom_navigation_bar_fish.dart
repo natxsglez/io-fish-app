@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:io_fish/feed_page/feed_page.dart';
-import 'package:io_fish/health_page/health_page.dart';
+import 'package:io_fish/pages/feed_page/feed_page.dart';
+import 'package:io_fish/pages/health_page/health_page.dart';
 import 'package:io_fish/models/Sensor.dart';
-import 'package:io_fish/sensor_graph_page/sensor_graph_page.dart';
+import 'package:io_fish/pages/sensor_graph_page/sensor_graph_page.dart';
 import 'package:io_fish/services/sensor/sensor_bloc.dart';
-import 'package:io_fish/tank_detail_page/tank_detail_page.dart';
+import 'package:io_fish/pages/tank_detail_page/tank_detail_page.dart';
 
 class BottomNavigationBarFish extends StatefulWidget {
   final String tankId;

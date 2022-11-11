@@ -1,7 +1,7 @@
 import 'package:amplify_authenticator/amplify_authenticator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:io_fish/home_page/home_page.dart';
+import 'package:io_fish/pages/home_page/home_page.dart';
 import 'package:io_fish/services/amplify/amplify_bloc.dart';
 import 'package:io_fish/services/mqtt/mqtt_bloc.dart';
 import 'package:io_fish/services/sensor/sensor_bloc.dart';

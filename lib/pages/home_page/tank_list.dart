@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:io_fish/home_page/tank_item.dart';
+import 'package:io_fish/pages/home_page/tank_item.dart';
 
 class TankList extends StatelessWidget {
   final List<dynamic> tankList;
