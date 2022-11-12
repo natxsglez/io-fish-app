@@ -2,16 +2,19 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:io_fish/models/Sensor.dart';
 import 'package:io_fish/pages/add_sensor_page/add_sensor_page.dart';
 import 'package:io_fish/services/sensor/sensor_bloc.dart';
 import 'package:io_fish/pages/tank_detail_page/sensor_list.dart';
 
 class TankDetailPage extends StatelessWidget {
   final String tankId;
-  const TankDetailPage({super.key, required this.tankId});
+  TankDetailPage({super.key, required this.tankId});
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<SensorBloc>(context)
+        .add(GetSensorListEvent(tankId: tankId));
     return Stack(children: [
       Column(
         children: [

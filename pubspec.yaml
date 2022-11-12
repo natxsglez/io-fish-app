@@ -21,6 +21,7 @@ dependencies:
   amplify_core:
   amplify_datastore:
   amplify_api:
+  syncfusion_flutter_charts: 
 
 dev_dependencies:
   flutter_test:

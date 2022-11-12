@@ -15,8 +15,6 @@ class TankItem extends StatelessWidget {
     return Card(
       child: GestureDetector(
         onTap: () {
-          BlocProvider.of<SensorBloc>(context)
-              .add(GetSensorListEvent(tankId: tank.id));
           Navigator.push(
               context,
               MaterialPageRoute(

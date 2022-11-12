@@ -1,8 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+class SensorData {
+  final double day;
+  final double data;
+
+  SensorData({required this.day, required this.data});
+}
 
 class HealthPage extends StatelessWidget {
-  const HealthPage({super.key});
+  HealthPage({super.key});
+  final toolTip = TooltipBehavior(enable: true);
+  List<SensorData> healthData = [
+    SensorData(day: 1, data: 61),
+    SensorData(day: 2, data: 59),
+    SensorData(day: 3, data: 62),
+    SensorData(day: 4, data: 51),
+    SensorData(day: 5, data: 52),
+    SensorData(day: 6, data: 50),
+    SensorData(day: 7, data: 33),
+    SensorData(day: 8, data: 48),
+    SensorData(day: 9, data: 52),
+    SensorData(day: 10, data: 59),
+    SensorData(day: 11, data: 88),
+    SensorData(day: 12, data: 87),
+    SensorData(day: 13, data: 51),
+    SensorData(day: 14, data: 60),
+    SensorData(day: 15, data: 52),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +46,7 @@ class HealthPage extends StatelessWidget {
         const Card(
           child: ListTile(
               title: Text("Puntaje más reciente"),
-              subtitle: Text("Actualizado el 11-08-2021 15:17"),
+              subtitle: Text("Actualizado el 11-08-2022 15:17"),
               leading: CircleAvatar(
                   backgroundColor: Colors.amber,
                   radius: 30.0,
@@ -40,7 +66,7 @@ class HealthPage extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
                 child: const Text(
-                  "Hoy",
+                  "Este mes",
                   style: TextStyle(fontSize: 20),
                 ),
               ),
@@ -57,7 +83,25 @@ class HealthPage extends StatelessWidget {
         Expanded(
           child: Container(
             alignment: Alignment.center,
-            child: const Text("Aquí va la gráfica"),
+            child: SfCartesianChart(
+              legend: Legend(isResponsive: true),
+              tooltipBehavior: toolTip,
+              primaryXAxis: CategoryAxis(
+                  title: AxisTitle(
+                text: 'Día',
+              )),
+              primaryYAxis: CategoryAxis(
+                  title: AxisTitle(
+                text: 'Puntaje',
+              )),
+              series: <ChartSeries>[
+                LineSeries<SensorData, double>(
+                  dataSource: healthData,
+                  xValueMapper: (SensorData health, _) => health.day,
+                  yValueMapper: (SensorData health, _) => health.data,
+                )
+              ],
+            ),
           ),
         )
       ],
