@@ -28,10 +28,8 @@ class SensorBloc extends Bloc<SensorEvent, SensorState> {
   }
 
   FutureOr<void> _getSensorList(event, emit) async {
-    log("getting sensor list");
     try {
       final sensorList = await _sensorRepository.getSensorsList(event.tankId);
-      log(sensorList.toString());
       if (sensorList.isNotEmpty) {
         emit(GetSensorListSuccessState(sensorList: sensorList));
       } else {

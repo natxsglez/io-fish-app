@@ -56,7 +56,6 @@ class MqttBloc extends Bloc<MqttEvent, MqttState> {
         throw "No se pudo conectar a AWS :c";
       }
     } catch (error) {
-      print(error);
       emit(MqttErrorState());
     }
   }
