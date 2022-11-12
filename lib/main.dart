@@ -31,6 +31,7 @@ class MyApp extends StatelessWidget {
     BlocProvider.of<AmplifyBloc>(context).add(ConfigureAmplifyEvent());
     return Authenticator(
       child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           builder: Authenticator.builder(),
           supportedLocales: const [
             Locale('es'), // Spanish
